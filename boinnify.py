@@ -1,4 +1,3 @@
-
 boinDict = {'ア':['ア','カ','サ','タ','ナ','ハ','マ','ヤ','ラ','ワ','ガ','ザ','ダ','パ','バ'], 
             'イ':['イ','キ','シ','チ','ニ','ヒ','ミ','リ','ギ','ジ','ヂ','ビ','ピ'],
             'ウ':['ウ','ク','ス','ツ','ヌ','フ','ム','ユ','ル','グ','ズ','ヅ','ブ','プ'],
@@ -16,12 +15,11 @@ smallboinDict = {'ァ':['ァ','ャ'], 'ィ':['ィ'], 'ゥ':['ゥ','ュ'], 'ェ':
 def boinnify(word):
     boinnifiedWord = ""
     for i in range(len(word)):
-
         if word[i] == 'ン' or word[i] == 'ッ':
             boinnifiedWord += word[i]
             continue
 
-        if word[i] == 'ー':
+        if word[i] == 'ー' and i > 0:
             if boinnifiedWord[i-1] in boinDict.keys(): #previous letter is boin
                 boinnifiedWord += boinnifiedWord[i-1]
 
@@ -49,14 +47,14 @@ def boinnify(word):
         if boin:
             boinnifiedWord += boin
             continue
+
+        else:
+            boinnifiedWord += word[i]
     
     return boinnifiedWord
-
 
 def checkLetterInDict(letter, dict):
     for row in list(dict.values()):
         if letter in row:
             return list(dict.keys())[list(dict.values()).index(row)]
     return False
-
-print(boinnify('ミョーウガ'))

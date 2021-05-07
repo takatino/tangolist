@@ -1,3 +1,5 @@
+import boinnify
+
 f = open(r'./VDRJ_Ver1_1_Research_Top60894.csv', 'r')
 lines = f.readlines()
 f.close()
@@ -13,6 +15,6 @@ for i in range(77-1, 60970):
     if len(linetext[14])*len(linetext[15]) == 1 and ord(linetext[15]) - ord(linetext[14]) == 96:
         continue
     print(linetext[15])
-    nf.write(linetext[14] + "," + linetext[15] + "\n") #14:単語 15:読み（カタカナ）
+    nf.write(linetext[14] + "," + linetext[15] + "," + boinnify.boinnify(linetext[15]) +"\n") #14:単語 15:読み（カタカナ）
 
 nf.close() 
